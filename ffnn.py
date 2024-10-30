@@ -113,7 +113,7 @@ def multiclass_classification(input_vector):
 """ Programmstart:"""
 while True:
     selected_mode = input("mode? [binary/multiclass]:\t")
-    string_input = input("\nvector? [must have exactly 4 integer components, separated by a comma and without "
+    string_input = input("\nvector? [must have exactly 4 numerical components, separated by a comma and without "
                          "whitespaces]\t")
     string_input_list = string_input.split(",")
     if len(string_input_list) == 4 and all(ele.replace('.', '', 1).isdigit() for ele in string_input_list):
