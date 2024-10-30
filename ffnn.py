@@ -61,7 +61,7 @@ def binary_classification(input_vector):
     bias_layer_output = -0.01
 
     output_y = sigmoid(np.dot(layer_2_vector, weights_layer_output) + bias_layer_output)
-    print(output_y)
+    print(f'Output for binary: y = {output_y}')
 
 
 def multiclass_classification(input_vector):
@@ -107,12 +107,31 @@ def multiclass_classification(input_vector):
     )
 
     layer_output_vector = softmax(np.add(layer_output_vector, bias_layer_output))
-    print(layer_output_vector)
+    print(f'Output for multiclass: y =  {layer_output_vector}')
 
 
 """ Programmstart:"""
-print("mode? [binary/multiclass]:")
-mode = input()
-print("vector? [must have exactly 4 integer components")
+while True:
+    selected_mode = input("mode? [binary/multiclass]:\t")
+    string_input = input("\nvector? [must have exactly 4 integer components, separated by a comma and without "
+                         "whitespaces]\t")
+    string_input_list = string_input.split(",")
+    number_check_positive = False
+    if len( string_input_list) == 4:
+        for ele in string_input_list:
+            if ele.replace('.', '', 1).isdigit():
+                number_check_positive = True
+            else:
+                number_check_positive = False
+    if number_check_positive:
+        entered_input_vector = np.array(string_input_list, dtype=float)
+        print(f'\nmode = {selected_mode} AND Vector = {entered_input_vector}')
+        FFNN(entered_input_vector, selected_mode)
+    else:
+        print("Input is not a valid number or of invalid size.")
+    choice = input("\nAnother round? [n to quit/any key for another round]:\t")
+    if choice == "n":
+        exit()
+
 
 
