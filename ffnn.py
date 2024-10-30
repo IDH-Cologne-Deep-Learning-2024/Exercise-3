@@ -116,14 +116,7 @@ while True:
     string_input = input("\nvector? [must have exactly 4 integer components, separated by a comma and without "
                          "whitespaces]\t")
     string_input_list = string_input.split(",")
-    number_check_positive = False
-    if len( string_input_list) == 4:
-        for ele in string_input_list:
-            if ele.replace('.', '', 1).isdigit():
-                number_check_positive = True
-            else:
-                number_check_positive = False
-    if number_check_positive:
+    if len(string_input_list) == 4 and all(ele.replace('.', '', 1).isdigit() for ele in string_input_list):
         entered_input_vector = np.array(string_input_list, dtype=float)
         print(f'\nmode = {selected_mode} AND Vector = {entered_input_vector}')
         FFNN(entered_input_vector, selected_mode)
@@ -132,6 +125,3 @@ while True:
     choice = input("\nAnother round? [n to quit/any key for another round]:\t")
     if choice == "n":
         exit()
-
-
-
